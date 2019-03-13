@@ -1,0 +1,51 @@
+[05-Mar-2019 00:13:19 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:1) in /home/aherrinc/public_html/DotaHelper/Pages/login.php on line 30
+[05-Mar-2019 00:13:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function dbConnect() in /home/aherrinc/public_html/DotaHelper/Pages/login.php:31
+Stack trace:
+#0 {main}
+  thrown in /home/aherrinc/public_html/DotaHelper/Pages/login.php on line 31
+[05-Mar-2019 00:13:56 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:1) in /home/aherrinc/public_html/DotaHelper/Pages/login.php on line 30
+[05-Mar-2019 00:13:56 UTC] PHP Warning:  require(../../SteamAuthentication-4.0/steamauth/steamauth.php): failed to open stream: No such file or directory in /home/aherrinc/public_html/DotaHelper/Pages/login.php on line 31
+[05-Mar-2019 00:13:56 UTC] PHP Warning:  require(../../SteamAuthentication-4.0/steamauth/steamauth.php): failed to open stream: No such file or directory in /home/aherrinc/public_html/DotaHelper/Pages/login.php on line 31
+[05-Mar-2019 00:13:56 UTC] PHP Fatal error:  require(): Failed opening required '../../SteamAuthentication-4.0/steamauth/steamauth.php' (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/aherrinc/public_html/DotaHelper/Pages/login.php on line 31
+[05-Mar-2019 00:14:33 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:1) in /home/aherrinc/public_html/DotaHelper/Pages/login.php on line 30
+[05-Mar-2019 00:15:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:4) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:16:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:16:26 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:16:29 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:16:29 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:18:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:18:09 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:18:38 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:20:49 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:21:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:21:16 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/aherrinc/public_html/DotaHelper/Pages/login.php:6) in /home/aherrinc/public_html/DotaHelper/SteamAuthentication-4.0/steamauth/steamauth.php on line 25
+[05-Mar-2019 00:42:36 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 130
+[05-Mar-2019 00:51:28 UTC] PHP Fatal error:  Uncaught Error: Class 'SteamLogin' not found in /home/aherrinc/public_html/DotaHelper/Pages/index.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 3
+[09-Mar-2019 18:52:23 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 267
+[09-Mar-2019 18:52:37 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'aherrinc_senior'@'localhost' (using password: YES) in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 249
+[09-Mar-2019 18:52:57 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'aherrinc_senior'@'localhost' (using password: YES) in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 249
+[10-Mar-2019 20:05:03 UTC] PHP Warning:  file_get_contents(https://api.opendota.com/api/players/88748957): failed to open stream: HTTP request failed!  in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 303
+[10-Mar-2019 20:06:08 UTC] PHP Warning:  file_get_contents(https://api.opendota.com/api/players/88748957): failed to open stream: HTTP request failed!  in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 303
+[10-Mar-2019 20:07:09 UTC] PHP Warning:  file_get_contents(https://api.opendota.com/api/players/88748957): failed to open stream: HTTP request failed!  in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 303
+[10-Mar-2019 20:08:28 UTC] PHP Warning:  file_get_contents(https://api.opendota.com/api/players/88748957): failed to open stream: HTTP request failed!  in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 303
+[10-Mar-2019 20:09:52 UTC] PHP Warning:  file_get_contents(https://api.opendota.com/api/players/88748957): failed to open stream: HTTP request failed!  in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 303
+[10-Mar-2019 20:12:11 UTC] PHP Warning:  file_get_contents(https://api.opendota.com/api/players/88748957): failed to open stream: HTTP request failed!  in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 303
+[10-Mar-2019 20:25:47 UTC] PHP Warning:  file_get_contents(https://api.opendota.com/api/players/88748957): failed to open stream: HTTP request failed!  in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 303
+[10-Mar-2019 20:26:46 UTC] PHP Warning:  file_get_contents(https://api.opendota.com/api/players/88748957): failed to open stream: HTTP request failed!  in /home/aherrinc/public_html/DotaHelper/Pages/index.php on line 303
+[11-Mar-2019 15:32:05 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'aherrinc_senior'@'localhost' (using password: YES) in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php on line 227
+[11-Mar-2019 15:34:08 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'aherrinc_senior'@'localhost' (using password: YES) in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php on line 218
+[11-Mar-2019 15:34:16 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'aherrinc_senior'@'localhost' (using password: YES) in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php on line 218
+[11-Mar-2019 15:34:20 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'aherrinc_senior'@'localhost' (using password: YES) in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php on line 218
+[11-Mar-2019 15:34:25 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'aherrinc_senior'@'localhost' (using password: YES) in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php on line 218
+[11-Mar-2019 15:35:05 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'aherrinc_senior'@'localhost' (using password: YES) in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php on line 218
+[11-Mar-2019 15:36:06 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'aherrinc_senior'@'localhost' (using password: YES) in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php on line 218
+[11-Mar-2019 16:06:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function radiantRows() in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php:254
+Stack trace:
+#0 /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php(178): printMatchDetailsTable(Object(mysqli), '4496701425')
+#1 {main}
+  thrown in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php on line 254
+[11-Mar-2019 16:13:39 UTC] PHP Parse error:  syntax error, unexpected 'function' (T_FUNCTION), expecting '(' in /home/aherrinc/public_html/DotaHelper/Pages/matchDetails.php on line 236
+[11-Mar-2019 17:04:32 UTC] PHP Warning:  file_get_contents(https://steamcommunity.com/openid/login): failed to open stream: Connection timed out in /home/aherrinc/public_html/DotaHelper/Pages/SteamLogin.php on line 77
