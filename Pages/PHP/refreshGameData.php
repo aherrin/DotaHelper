@@ -2,7 +2,7 @@
 session_start();
 
 ignore_user_abort(TRUE);
-header("Location: ../index.php");
+header("Location: ../profile.php");
 
 if (isset($_SESSION['steamID'])) {
     //refreshData();
@@ -13,8 +13,8 @@ if (isset($_SESSION['steamID'])) {
     //$steamid32 = $steamid & 0xffffffff;
     
     $account_id = getPlayerAccountID($conn, $steamid);
-    
-    $playerMatchesResponse = file_get_contents('http://api.opendota.com/api/players/'.$account_id.'/matches?limit=50');
+    $time = time();
+    $playerMatchesResponse = file_get_contents('http://api.opendota.com/api/players/'.$account_id.'/matches?date='.$time.'&api_key=65a96d82-0ad7-462f-87bf-07b10e6007be');
     $playerMatchesResponseDecoded = json_decode($playerMatchesResponse);
         
     foreach($playerMatchesResponseDecoded as $match){
@@ -31,7 +31,7 @@ if (isset($_SESSION['steamID'])) {
         else 
             $radiant_win = 0;
         
-        $matchDetailsResponse = file_get_contents('http://api.opendota.com/api/matches/'.$match_id.'');
+        $matchDetailsResponse = file_get_contents('http://api.opendota.com/api/matches/'.$match_id.'?api_key=65a96d82-0ad7-462f-87bf-07b10e6007be');
         $matchDetailsResponseDecoded = json_decode($matchDetailsResponse);
         
         $players = $matchDetailsResponseDecoded->players;
@@ -71,6 +71,7 @@ if (isset($_SESSION['steamID'])) {
             $total_gold = $player->total_gold;
             $total_xp = $player->total_xp;
             $kills_per_min = $player->kills_per_min;
+            $kills_per_min = round($kills_per_min, 2);
             $kda = $player->kda;
             $courier_kills = $player->courier_kills;
             $ancient_kills = $player->ancient_kills;
@@ -148,6 +149,9 @@ if (isset($_SESSION['steamID'])) {
     
     //header("Location: ../index.php");
 }
+else{
+    echo "Shit broke";
+}
 
 
 
@@ -210,7 +214,7 @@ function addNewPlayer($conn, $account_id){
     echo $account_id;
     echo "<br>";
     
-    $response = file_get_contents('http://api.opendota.com/api/players/'.$account_id.'');
+    $response = file_get_contents('http://api.opendota.com/api/players/'.$account_id.'?api_key=65a96d82-0ad7-462f-87bf-07b10e6007be');
     $decoded = json_decode($response);
     
     $profile = $decoded->profile;
@@ -239,14 +243,32 @@ function addNewPlayer($conn, $account_id){
     echo "<br>";
 }
 
-function addTempPlayer($conn, $account_id, $personaname, $steamid, $avatarUrl){
-    $sql = "INSERT INTO Player (account_id, personaname, steamid, avatar) VALUES (".$account_id . ", '" . $personaname . "', " . $steamid . ", '" . $avatarUrl . "')";
-    $result = $conn->query($sql);
+function addTempPlayer($conn, $personaname){
+    $sql = "INSERT INTO Player (account_id, personaname, steamid, avatar) VALUES (9999999999999999999, 'Anonymous', " . $steamid . ", 'https://static.giantbomb.com/uploads/square_small/0/1081/2434901-icefrog.jpg')";
     
     echo ">>>addTempPlayer(): ";
-    var_dump($result);
+    if (!tempPlayerExists($conn)) {
+        $result = $conn->query($sql);
+        var_dump($result);
+    }
+    
     echo "<br>";
     echo "<br>";
+}
+
+function tempPlayerExists($conn) {
+    $sql = "SELECT * FROM Player WHERE account_id = 9999999999999999999";
+    $result = $conn->query($sql);
+    
+    echo ">>>tempPlayerExists(): ";
+    if ($result->num_rows > 0) {
+        echo "TRUE <br>";
+        return true;
+    }
+    else{
+        echo "FALSE <br>";
+        return false;
+    }
 }
     
 function getPlayerAccountID($conn, $steamid) {

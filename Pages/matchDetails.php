@@ -8,7 +8,9 @@
 <head>
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -130,86 +132,58 @@
 
       <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
+        <!-- Breadcrumbs
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
           <li class="breadcrumb-item active">Overview</li>
-        </ol>
+        </ol>-->
     
 
 <!-- DataTables Example -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-table"></i>
-            Match Details</div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>Hero ID</th>
-                    <th>Player</th>
-                    <th>Kills</th>
-                    <th>Deaths</th>
-                    <th>Assists</th>
-                    <th>KDA</th>
-                    <th>Last Hits</th>
-                    <th>Denies</th>
-                    <th>Level</th>
-                    <th>XPM</th>
-                    <th>Total Gold</th>
-                    <th>GPM</th>
-                    <th>Ancient Kills</th>
-                    <th>Hero Damage</th>
-                    <th>Hero Healing</th>
-                    <th>Tower Damage</th>
-                    <th>Courier Kills</th>
-                    <th>Observer Uses</th>
-                    <th>Sentry Uses</th>
-                  </tr>
-                </thead>
-                <tbody>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
                     <?php
-
-                        $conn = dbConnect();
-                        $matchID = $_GET["matchID"];
-                        printMatchDetailsTable($conn, $matchID);
-                        
+                        print "Match #";
+                        print $_GET["matchID"];
                     ?>
-
-                </tbody>
-              </table>
-              <!--<canvas id="bar-chart" width="550" height="200"></canvas>
-              <script>
-              new Chart(document.getElementById("bar-chart"), {
-                type: 'bar',
-                data: {
-                  labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                  datasets: [
-                    {
-                      label: "Population (millions)",
-                      backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                      data: [2478,5267,734,784,433]
-                    }
-                  ]
-                },
-                options: {
-                  legend: { display: false },
-                  title: {
-                    display: true,
-                    text: 'Predicted world population (millions) in 2050'
-                  }
-                }
-            });
-            </script>!-->
+                </div>
+                
+                <?php
+                    $conn = dbConnect();
+                    $matchID = $_GET["matchID"];
+                    printMatchDetailsTable($conn, $matchID);
+                ?>
+                
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
-          </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
+    </div>
+</div>
+      
+       <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-      </div>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+  <script src="js/demo/datatables-demo.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/demo/datatables-demo.js"></script>
+  <script src="js/demo/chart-area-demo.js"></script>
+  
+</body>
 
 <?php
 
@@ -245,7 +219,11 @@ function printMatchDetailsTable($conn, $match_id){
     if ($gameResult->num_rows > 0) {
         // output data of each row
         while($row = $gameResult->fetch_assoc()) {
-            if ($row["radiantWin"] == 1) {
+            $radiantScore = $row['radiant_score'];
+            $direScore = $row['dire_score'];
+            $duration = gmdate("i:s", $row['duration']);
+            
+            if ($row["radiant_win"] == 1) {
                 $winner = "Radiant";
             } else {
                 $winner = "Dire";
@@ -255,31 +233,70 @@ function printMatchDetailsTable($conn, $match_id){
     else{
            echo "0 results.\n";
     }
-    radiantRows($conn, $match_id);
+     print "<div class='card-body'>".
+            "<div align='center' style='font-size:20px'>".$winner." Victory!</div>".
+            "<div align='center'><a style='padding-right:20px; color:#006622; font-size:20px'>".$radiantScore."</a><a style='padding-right:20px'>".$duration."</a><a style='color:#800000; font-size:20px'>".$direScore."</a></div><br>".
+            "<div class='table-responsive'>".
+              "<table class='table table-bordered' width='100%' cellspacing='0'>".
+                "<thead>".
+                  "<tr>".
+                    "<th>Hero</th>".
+                    "<th>Player</th>".
+                    "<th>Kills</th>".
+                    "<th>Deaths</th>".
+                    "<th>Assists</th>".
+                    "<th>KDA</th>".
+                    "<th>Last Hits</th>".
+                    "<th>Denies</th>".
+                    "<th>Level</th>".
+                    "<th>XPM</th>".
+                    "<th>Total Gold</th>".
+                    "<th>GPM</th>".
+                    "<th>Ancient Kills</th>".
+                    "<th>Hero Damage</th>".
+                    "<th>Hero Healing</th>".
+                    "<th>Tower Damage</th>".
+                    "<th>Courier Kills</th>".
+                    "<th>Observer Uses</th>".
+                    "<th>Sentry Uses</th>".
+                  "</tr>".
+                  
+                "</thead>".
+                    "<tbody>";
+                        radiantRows($conn, $match_id);
+                    print "</tbody></table></div>";
+                    
+
     
-    print "<tr>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-        "<td></td>".
-    "</tr>";
     
-    direRows($conn, $match_id);
+     print "<div class='table-responsive'>".
+              "<table class='table table-bordered' width='100%' cellspacing='0'>".
+            "<thead>".
+                  "<tr>".
+                    "<th>Hero</th>".
+                    "<th>Player</th>".
+                    "<th>Kills</th>".
+                    "<th>Deaths</th>".
+                    "<th>Assists</th>".
+                    "<th>KDA</th>".
+                    "<th>Last Hits</th>".
+                    "<th>Denies</th>".
+                    "<th>Level</th>".
+                    "<th>XPM</th>".
+                    "<th>Total Gold</th>".
+                    "<th>GPM</th>".
+                    "<th>Ancient Kills</th>".
+                    "<th>Hero Damage</th>".
+                    "<th>Hero Healing</th>".
+                    "<th>Tower Damage</th>".
+                    "<th>Courier Kills</th>".
+                    "<th>Observer Uses</th>".
+                    "<th>Sentry Uses</th>".
+                  "</tr>".
+                "</thead>".
+                    "<tbody>";
+                        direRows($conn, $match_id);
+                print "</tbody></table></div></div>";
 }
 
 function radiantRows($conn, $match_id) {
@@ -290,8 +307,9 @@ function radiantRows($conn, $match_id) {
         // output data of each row
         while($row = $playerGameResult->fetch_assoc()) {
             if ($row["isRadiant"] == 1) {
-                print "<tr bgcolor='#bfed87'>".
-                    "<td>".$row['hero_id']."</td>".
+                print "<tr bgcolor='#bfed87'>";
+                printHeroIcon($conn, $row['hero_id']);
+                print
                     "<td>".$row['personaname']."</td>".
                     "<td>".$row['kills']."</td>".
                     "<td>".$row['deaths']."</td>".
@@ -320,6 +338,20 @@ function radiantRows($conn, $match_id) {
     }
 }
 
+function printHeroIcon($conn, $hero_id) {
+    $sql = "SELECT * FROM Hero WHERE ".$hero_id." = hero_id";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            print "<td><img src='".$row['hero_icon']."'></td>";
+        }
+    }
+    else{
+        print "<td>".$row['hero_id']."</td>";
+    }
+}
+
 function direRows($conn, $match_id) {
     $playerGameSql = "SELECT * FROM PlayerGame WHERE ".$match_id." = match_id";
     $playerGameResult = $conn->query($playerGameSql);
@@ -328,8 +360,9 @@ function direRows($conn, $match_id) {
         // output data of each row
         while($row = $playerGameResult->fetch_assoc()) {
             if ($row["isRadiant"] == 0) {
-                print "<tr bgcolor='#ff9191'>".
-                    "<td>".$row['hero_id']."</td>".
+                print "<tr bgcolor='#ff9191'>";
+                printHeroIcon($conn, $row['hero_id']);
+                print
                     "<td>".$row['personaname']."</td>".
                     "<td>".$row['kills']."</td>".
                     "<td>".$row['deaths']."</td>".
